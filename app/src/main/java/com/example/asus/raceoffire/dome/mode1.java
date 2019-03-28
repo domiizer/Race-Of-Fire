@@ -1,7 +1,9 @@
 package com.example.asus.raceoffire.dome;
 
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.Log;
 
 import com.example.asus.raceoffire.framework.FMXGame;
@@ -16,11 +18,11 @@ import java.util.List;
 import java.util.Random;
 
 public class mode1 extends FMXScreen {
-    private FMXImage horse2, bar2, button, userbar, table1, table2, shiftbar, chip, bgbet, bghorse, lal;
-    private int horseW = 72, horseH = 178, chipSize = 72, add = 0, betW = 120, rass, xxixx = 0, abs;
-    private double exid;
-    private boolean numC;
-    private int price, bytouch, ddsi = 138;
+    private FMXImage horse2, bar2, button, userbar, table1, table2, shiftbar, chip, bgbet, bghorse,newbutton;
+    private int horseW = 72, horseH = 178, chipSize = 72, add = 0, betW = 120, rass, xxixx = 0, abs,showset=0,setnum=0;
+    private double exid,alphanox=0;
+    private boolean numC,canT=true;
+    private int price, bytouch, ddsi = 138,pl,isClick;
     public float distance = 0, olddis;
     public float time = 0;
     public float velocity = 0;
@@ -39,6 +41,7 @@ public class mode1 extends FMXScreen {
     private boolean showpayout = false;
     private boolean sound = true;
     private int amd = 1;
+    private AssetManager assetManager;
 
     public mode1(FMXGame game) {
         super(game);
@@ -52,8 +55,8 @@ public class mode1 extends FMXScreen {
         shiftbar = g.newImage("Shift bar.png", FMXGraphics.ImageFormat.ARGB4444);
         bgbet = g.newImage("bar1.png", FMXGraphics.ImageFormat.ARGB4444);
         bghorse = g.newImage("horse1.png", FMXGraphics.ImageFormat.ARGB4444);
+        newbutton=g.newImage("newbutton.png",FMXGraphics.ImageFormat.ARGB4444);
 
-        lal = g.newImage("05_username_credit_box.png", FMXGraphics.ImageFormat.ARGB4444);
 //        g.drawImage(bghorse,constan.SCREEN_HEIGHT/2-382,47);
 //        g.drawImage(horse2,constan.SCREEN_HEIGHT/2-357,50,0,0,714,176);//horse
 //        g.drawImage(bgbet,constan.SCREEN_HEIGHT/2-264,226);
@@ -90,10 +93,6 @@ public class mode1 extends FMXScreen {
         paint.setTextSize(10);
         g.drawImage(constan.mainbg, 0, 0);
         g.drawImage(constan.betroom, constan.SCREEN_HEIGHT - 400, 0, 0, 45 * constan.selectbetroom, 255, 45);
-        g.drawImage(constan.ibg, constan.SCREEN_HEIGHT - 60, +10);
-        g.drawImage(constan.iicon, constan.SCREEN_HEIGHT - 55, +12, 18 * amd, 0, 18, 20);
-        g.drawImage(constan.ibg, constan.SCREEN_HEIGHT - 100, +10);
-        g.drawImage(constan.iicon, constan.SCREEN_HEIGHT - 95, +12, 0, 0, 18, 20);
         g.drawImage(bghorse, constan.SCREEN_HEIGHT / 2 - 384, 49);
         g.drawImage(constan.horse, constan.SCREEN_HEIGHT / 2 - 360, 50, 0, 0, horseW*10, horseH);//horse
         g.drawImage(bgbet, constan.SCREEN_HEIGHT / 2 - 264, 226);
@@ -112,6 +111,7 @@ public class mode1 extends FMXScreen {
         g.drawImage(shiftbar, constan.SCREEN_HEIGHT / 2 - 244, constan.SCREEN_WIDTH - 92);
 
         clicked1();
+        g.drawImage(constan.ibg, constan.SCREEN_HEIGHT - 60, 5,48,0,48,48);
         if (numC == false)
             for (int i = 0; i < 5; i++) {
                 g.drawImage(constan.point, (constan.SCREEN_HEIGHT / 2 - 223) + chipSize * i, (int) ((constan.SCREEN_WIDTH - ddsi) + exid));
@@ -146,7 +146,7 @@ public class mode1 extends FMXScreen {
         g.drawImage(button, constan.SCREEN_HEIGHT / 2 + 136, constan.SCREEN_WIDTH - 92, 0, 30 * 0, 96, 30);//clear
         g.drawImage(button, constan.SCREEN_HEIGHT / 2 + 136, constan.SCREEN_WIDTH - 62, 0, 30 * 1, 96, 30);//clear all
         g.drawImage(button, constan.SCREEN_HEIGHT / 2 - 362, constan.SCREEN_WIDTH - 30, 0, 30 * 3, 96, 30);//back
-        g.drawImage(button, constan.SCREEN_HEIGHT / 2 + (245 + 69 - 48), constan.SCREEN_WIDTH - 30, 0, 30 * 2, 96, 30);//cf
+        g.drawImage(newbutton, constan.SCREEN_HEIGHT / 2 + (245 + 69 - 48), constan.SCREEN_WIDTH - 50, 0, 0, 112, 47);//cf
 
         g.drawString("" + constan.winners.get(0), constan.SCREEN_HEIGHT / 2 + 246 + 10, 226 + 40, paint);
         g.drawString("" + constan.winners.get(1), constan.SCREEN_HEIGHT / 2 + 246 + 35, 226 + 40, paint);
@@ -200,11 +200,11 @@ public class mode1 extends FMXScreen {
         for (int i = 0; i <= constan.arrShowChips14.size() - 1; i++) {
             constan.arrShowChips14.get(i).paint(g);
         }
-        g.drawImage(lal, 0, 0);
-        g.drawImage(lal, 150, 0);
-        g.drawString("Bet : " + constan.bet_amount, constan.SCREEN_HEIGHT / 2 - 150, constan.SCREEN_WIDTH - 10, paint);
-        g.drawString("" + constan.user, 50, 20, paint);
-        g.drawString("Credit : " + constan.credit, 160, 20, paint);
+        g.drawImage(constan.lal, 10, 10);
+        g.drawImage(constan.lal, 170, 10);
+        g.drawString("" + constan.user, 70, 30, paint);
+        g.drawString("Credit : " + constan.credit, 180, 30, paint);
+        g.drawImage(constan.ibg, 0, 0,0,0,48,48);
 
         for (int i = 0; i < 10; i++) {
             g.drawString("" + (constan.shows[i]), constan.SCREEN_HEIGHT / 2 - 315, constan.SCREEN_WIDTH / 2 + 34 + 18 * i, paint);
@@ -212,7 +212,27 @@ public class mode1 extends FMXScreen {
         if (showpayout == true)
             g.drawImage(constan.shpayout, constan.SCREEN_HEIGHT / 2 - 384, constan.SCREEN_WIDTH / 2 - 240);
         checkTouch();
+        if (showset==1) {
+            g.drawRectBG(0,0,constan.SCREEN_HEIGHT,constan.SCREEN_WIDTH,Color.BLACK,120);
+            g.drawImage(constan.ibg, constan.SCREEN_HEIGHT - 60, 5,48,0,48,48);
+//            g.drawImage(constan.ibg, 0, 0,0,0,48,48);
+            g.drawImage(constan.setbg, constan.SCREEN_HEIGHT - 218, +58);
+            g.drawImage(constan.setbg, constan.SCREEN_HEIGHT - 218, +108);
+            if (setnum==1){
+                g.drawImage(constan.shpayout,0,0);
+            }
+            else if (setnum==2){
+
+            }
+        }
+        if (isClick==1)
+            ScreentoRunTheworld(g,deltaTime);
+        if (isClick==2){
+            ScreentoSelect(g,deltaTime);
+        }
     }
+
+
 
     void clicked1() {
         FMXGraphics g = game.getGraphics();
@@ -281,12 +301,16 @@ public class mode1 extends FMXScreen {
         int len = touchEvents.size();
         for (int i = 0; i < len; i++) {
             FMXInput.TouchEvent event = touchEvents.get(i);
-            if (event.type == FMXInput.TouchEvent.TOUCH_DOWN) {
+            if (event.type == FMXInput.TouchEvent.TOUCH_DOWN&&canT==true) {
                 //Check Touch by area
                 //event  //imagepositionX ///imagepositionY ///imagesizeWidth ///imagesizeHeight
                 if (price > 0 && constan.bet_amount + price <= constan.maxroom) {
                     for (int j = 0; j < checkshowhosre.length; j++) {
-                        if (dome.inBounds(event, (constan.SCREEN_HEIGHT/2) - 360 + (horseW * j), 50, horseW, horseH) && constan.credit > 0) {
+                        if (j>=9)
+                            pl=10;
+                        else
+                            pl=0;
+                        if (dome.inBounds(event, (constan.SCREEN_HEIGHT/2) - 360 + (horseW * j)+pl, 50, horseW, horseH) && constan.credit > 0&&showset==0) {
                             Log.i("sdgsag", "checkTouch: "+(horseW*j));
                             add = 1;
                             c = j;
@@ -295,7 +319,7 @@ public class mode1 extends FMXScreen {
                         }
                     }
                     for (int j = 0; j < checkshowbet.length; j++) {
-                        if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 241) + 120 * (j), 226, 120, 132) && constan.credit > 0) {
+                        if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 241) + 120 * (j), 226, 120, 132) && constan.credit > 0&&showset==0) {
                             Log.i("ss5o1", "checkTouch: height");
                             add = 1;
                             a = 2;
@@ -304,62 +328,66 @@ public class mode1 extends FMXScreen {
                         }
                     }
                 }
-                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235), constan.SCREEN_WIDTH - 86, 44, 44)) {
+                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235), constan.SCREEN_WIDTH - 86, 44, 44)&&showset==0) {
                     Log.i("ss5o1", "checkTouch: 25");
                     numC = true;
                     price = constan.price1;
                     centos = 0;
                 }
-                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 1, constan.SCREEN_WIDTH - 86, 48, 48)) {
+                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 1, constan.SCREEN_WIDTH - 86, 48, 48)&&showset==0) {
                     Log.i("ss5o1", "checkTouch: 50");
                     numC = true;
                     price = constan.price2;
                     centos = 1;
                 }
-                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 2, constan.SCREEN_WIDTH - 86, 48, 48)) {
+                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 2, constan.SCREEN_WIDTH - 86, 48, 48)&&showset==0) {
                     Log.i("ss5o1", "checkTouch: 100");
                     numC = true;
                     price = constan.price3;
                     centos = 2;
                 }
-                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 3, constan.SCREEN_WIDTH - 86, 48, 48)) {
+                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 3, constan.SCREEN_WIDTH - 86, 48, 48)&&showset==0) {
                     Log.i("ss5o1", "checkTouch: 500");
                     numC = true;
                     price = constan.price4;
                     centos = 3;
                 }
-                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 4, constan.SCREEN_WIDTH - 86, 48, 48)) {
+                if (dome.inBounds(event, (constan.SCREEN_HEIGHT / 2 - 235) + chipSize * 4, constan.SCREEN_WIDTH - 86, 48, 48)&&showset==0) {
                     Log.i("ss5o1", "checkTouch: 1K");
                     numC = true;
                     price = constan.price5;
                     centos = 4;
                 }
-                if (dome.inBounds(event, constan.SCREEN_HEIGHT / 2 + (246 + 100 - 48), constan.SCREEN_WIDTH - 30, 96, 30)&&constan.eieiza==1) {
+                if (dome.inBounds(event, constan.SCREEN_HEIGHT / 2 + (246 + 100 - 48), constan.SCREEN_WIDTH - 50, 96, 30)&&constan.eieiza==1&&showset==0) {
                     Log.i("ss5o1", "checkTouch: CF");
-                    game.setScreen(new HorseRun(game));
-                    calculate();
+                    isClick=1;
                 }
-                if (dome.inBounds(event, constan.SCREEN_HEIGHT / 2 + 136 + 50, constan.SCREEN_WIDTH - 62, 96, 30)) {
-                    Log.i("hohohoho", "checkTouch: ");
+                if (dome.inBounds(event, constan.SCREEN_HEIGHT / 2 + 136 + 50, constan.SCREEN_WIDTH - 62, 96, 30)&&showset==0) {
+                    Log.i("clear", "checkTouch: ");
                     bytouch = 1;
                     clear();
                 }
-                if (dome.inBounds(event, constan.SCREEN_HEIGHT - 75, 10, 30, 30) && showpayout == false) {
-                    showpayout = true;
-                } else if (dome.inBounds(event, constan.SCREEN_HEIGHT - 75, 10, 30, 30) && showpayout == true) {
-                    showpayout = false;
+                if (dome.inBounds(event,constan.SCREEN_HEIGHT -20, +10, 48,48)&&showset==0){
+                    Log.i("1stlotus", "checkTouch: ");
+                    showset=1;
+                    setnum=0;
                 }
-                if (dome.inBounds(event, constan.SCREEN_HEIGHT - 35, 10, 35, 30) && sound == true) {
-                    sound = false;
-                    amd = 2;
-                } else if (dome.inBounds(event, constan.SCREEN_HEIGHT - 35, 10, 35, 30) && sound == false) {
-                    sound = true;
-                    amd = 1;
+                else if (dome.inBounds(event,constan.SCREEN_HEIGHT -20, +10, 48,48)&&showset==1){
+                    Log.i("2ndlotus", "checkTouch: ");
+                    showset=0;
+                    setnum=0;
                 }
+                if (dome.inBounds(event,constan.SCREEN_HEIGHT - 218, 58, 218,58)&&showset==1&&setnum==0){
+                    setnum=1;
+                }
+                else if (dome.inBounds(event,constan.SCREEN_HEIGHT - 218, 58, 218,58)&&showset==1&&setnum==1){
+                    setnum=0;
+                }
+
                 if (dome.inBounds(event, constan.SCREEN_HEIGHT / 2 - 362, constan.SCREEN_WIDTH - 30, 100, 40)) {
                     bytouch = 1;
                     clear();
-                    game.setScreen(new Select(game));
+                    isClick=2;
                 }
             }
         }
@@ -428,7 +456,28 @@ public class mode1 extends FMXScreen {
         constan.arrShowChips14.clear();
         constan.payout = 0;
     }
+    private void ScreentoRunTheworld(FMXGraphics g,float deltaTime) {
+        canT=false;
+        alphanox+=deltaTime*0.01*500;
+        g.drawRectBG(0,0,constan.SCREEN_HEIGHT,constan.SCREEN_WIDTH,Color.BLACK, (int) alphanox);
+        Log.i("ssdfasdf", "swScreen: "+alphanox);
+        if (alphanox>=250){
+            isClick=0;
+            calculate();
+            game.setScreen(new HorseRun(game));
+        }
+    }
+    private void ScreentoSelect(FMXGraphics g, float deltaTime) {
+        canT=false;
+        alphanox+=deltaTime*0.01*500;
+        g.drawRectBG(0,0,constan.SCREEN_HEIGHT,constan.SCREEN_WIDTH,Color.BLACK, (int) alphanox);
+        Log.i("ssdfasdf", "swScreen: "+alphanox);
+        if (alphanox>=250){
+            isClick=0;
+            game.setScreen(new Select(game));
+        }
 
+    }
     @Override
     public void pause() {
 

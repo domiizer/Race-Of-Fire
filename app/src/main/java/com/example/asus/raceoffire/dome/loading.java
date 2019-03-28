@@ -20,8 +20,8 @@ public class loading extends FMXScreen {
         constan.chip500 = g.newImage("tile003.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.chip1k = g.newImage("tile004.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.point = g.newImage("point.png", FMXGraphics.ImageFormat.ARGB4444);
-        constan.ibg = g.newImage("menu_button_small.png", FMXGraphics.ImageFormat.ARGB4444);
-        constan.iicon = g.newImage("iiconpng.png", FMXGraphics.ImageFormat.ARGB4444);
+        constan.ibg = g.newImage("logo_iam.png", FMXGraphics.ImageFormat.ARGB4444);
+        constan.setbg = g.newImage("setting.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.shpayout = g.newImage("pay out.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.fxchip = g.newImage("chip_effect.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.betroom = g.newImage("bet room.png", FMXGraphics.ImageFormat.ARGB4444);
@@ -38,7 +38,7 @@ public class loading extends FMXScreen {
         constan.chip03 = g.newImage("tile012.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.chip04 = g.newImage("tile013.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.chip05 = g.newImage("tile014.png", FMXGraphics.ImageFormat.ARGB4444);
-        constan.mainbg = g.newImage("bgmain.png", FMXGraphics.ImageFormat.ARGB4444);
+        constan.lal = g.newImage("05_username_credit_box.png", FMXGraphics.ImageFormat.ARGB4444);
 
     }
 

@@ -57,11 +57,25 @@ public class HorseRun extends FMXScreen {
             constan.status.add(constan.winners.get(i));
         }
         Log.i("usigfl", "HorseRun: " + constan.status);
+//        constan.mamaza.add(new mamamamama(0));
+//        constan.mamaza.add(new mamamamama(1));
+//        constan.mamaza.add(new mamamamama(2));
+//        constan.mamaza.add(new mamamamama(3));
+//        constan.mamaza.add(new mamamamama(4));
+//        constan.mamaza.add(new mamamamama(5));
+//        constan.mamaza.add(new mamamamama(6));
+//        constan.mamaza.add(new mamamamama(7));
+//        constan.mamaza.add(new mamamamama(8));
+//        constan.mamaza.add(new mamamamama(9));
+
     }
 
     @Override
     public void update(float deltaTime) {
         checkTouch();
+        for (int i = 0; i <= constan.mamaza.size() - 1; i++) {
+            constan.mamaza.get(i).tick(deltaTime);
+        }
         runF+=deltaTime * 0.01*20;
         ff= (int) (runF%5);
         if (deley<=0.5)
@@ -112,6 +126,7 @@ public class HorseRun extends FMXScreen {
                 if (r[i] - constan.runCamera >= constan.SCREEN_HEIGHT - 250)
                     a = 1;
             }
+
         }
     }
 
@@ -123,9 +138,14 @@ public class HorseRun extends FMXScreen {
         paint.setColor(Color.WHITE);
         paint.setTextSize(10);
         g.drawImage(constan.BG, 0, 0, (int) (0 + constan.runCamera), 0, constan.SCREEN_HEIGHT, constan.SCREEN_WIDTH);
+        for (int i = 0; i <= constan.mamaza.size() - 1; i++) {
+            constan.mamaza.get(i).paint(g);
+        }
+
         for (int i = 0, x = 9; i < constan.test.length; i++, x--) {
             g.drawImage(constan.test[i], (int) (r[i] - constan.runCamera), constan.SCREEN_WIDTH - 104 - lege * x, 138 * runframeH, 0, 138, 104);
         }
+
         g.drawImage(constan.starto, (int) (0 - constan.runCamera), constan.SCREEN_WIDTH - 372);
         if (cpaint == 0) {
             g.drawImage(ready, constan.SCREEN_HEIGHT / 2 - 125, constan.SCREEN_WIDTH / 2 - 109);

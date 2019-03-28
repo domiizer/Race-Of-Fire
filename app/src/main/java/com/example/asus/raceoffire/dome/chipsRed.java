@@ -142,6 +142,7 @@ public class chipsRed {
                 dy -= 5;
                 no_chip++;
                 ShowChipz showChips = new ShowChipz(endX, endY + dy, img_no, constan.chip_type.get(img_no), no_chip, choose, endX, endY);
+
                 if (choose == 1) constan.arrShowChips1.add(showChips);
                 if (choose == 2) constan.arrShowChips2.add(showChips);
                 if (choose == 3) constan.arrShowChips3.add(showChips);

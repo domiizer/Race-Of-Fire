@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class constan {
-    public static int SCREEN_WIDTH = 480;
+    public static int SCREEN_WIDTH = 482;
     public static int SCREEN_HEIGHT = 785;
-    public static FMXImage BG, starto, readyBG, readynum, logolt, horse01, horse02, horse03, horse04, horse05, horse06, horse07, horse08, horse09, horse10, horse, ibg, iicon, shpayout;
+    public static FMXImage BG, starto,lal, horse, ibg,setbg, shpayout;
     public static FMXImage[] test = new FMXImage[10];
     public static double[][] speed = new double[10][25];
     public static FMXImage mainbg, betroom, chip25, chip100, chip500, chip1k, chip50, point, fxchip, crows, chip1, chip2, chip3, chip4, chip5, chip01, chip02, chip03, chip04, chip05;
@@ -24,6 +24,8 @@ public class constan {
     public static double[] rounds = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static int[] shows = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static ArrayList<chipsRed> chipsReds = new ArrayList<>();
+
+    public static ArrayList<mamamamama> mamaza = new ArrayList<>();
 
     public static ArrayList<ShowChipz> arrShowChips1 = new ArrayList<>();
     public static ArrayList<ShowChipz> arrShowChips2 = new ArrayList<>();
