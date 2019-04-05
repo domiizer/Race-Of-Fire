@@ -15,21 +15,33 @@ import java.util.List;
 import java.util.Random;
 
 public class runhorse02 extends FMXScreen {
-    FMXImage floor02, h01, h02, h03, finline;
-    double rrr, floorsie, pilsuk01, pilsuk02, pilsuk03, linesie, delauy, floorsiez = 1211,distime;
-    int runframeH, x = 0, y = constan.SCREEN_WIDTH, horsew = 138, horseh = 104, cnn = 0, posNow = 0;
-    int ddda = 1, dddb = 1, dddc = 1, dddd = 1, ddde = 1, s1, s2;
+    private FMXImage floor02, finline;
+    private FMXImage[] horse = new FMXImage[10];
+    private double rrr, floorsie, pilsuk01, pilsuk02, pilsuk03, linesie, delauy, floorsiez = 1200, distance=11000,floornekoya,s,v,t,tsst,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+    private int  y = constan.SCREEN_WIDTH, horsew = 138, horseh = 104, cnn = 0, posNow = 0;
+    private int ddda = 1, dddb = 1, dddc = 1, dddd = 1, ddde = 1, s1, s2, speed,bounds;
+    private int[] controlrun = new int[10],x =new int[10],runframeH=new int[10];
     boolean test = true;
-    Random random = new Random();
+    private float[] tall = new float[10];
+    private double[] speedhorse = new double[10];
+    private double[] testhorseT=new double[10], testhorseT2 =new double[10],testhorseT3=new double[10],testhorseT4=new double[10],testhorseT5=new double[10],testhorseT6=new double[10],testhorseT7=new double[10],testhorseT8=new double[10],testhorseT9=new double[10],testhorseT10=new double[10];
+   private Random random = new Random();
 
     public runhorse02(FMXGame game) {
         super(game);
 
         FMXGraphics g = game.getGraphics();
         floor02 = g.newImage("floorrun2.png", FMXGraphics.ImageFormat.ARGB4444);
-        h01 = g.newImage("horse01.png", FMXGraphics.ImageFormat.ARGB4444);
-        h02 = g.newImage("horse02.png", FMXGraphics.ImageFormat.ARGB4444);
-        h03 = g.newImage("horse03.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[0] = g.newImage("horse01.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[1] = g.newImage("horse02.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[2] = g.newImage("horse03.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[3] = g.newImage("horse04.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[4] = g.newImage("horse05.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[5] = g.newImage("horse06.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[6] = g.newImage("horse07.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[7] = g.newImage("horse08.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[8] = g.newImage("horse09.png", FMXGraphics.ImageFormat.ARGB4444);
+        horse[9] = g.newImage("horse010.png", FMXGraphics.ImageFormat.ARGB4444);
         finline = g.newImage("line.png", FMXGraphics.ImageFormat.ARGB4444);
         constan.winners = new ArrayList<>();
         for (int i = 1; i <= 3; i++) {
@@ -37,110 +49,194 @@ public class runhorse02 extends FMXScreen {
         }
 
         Collections.shuffle(constan.winners);
-        Log.i("sdgsdg", "runhorse02: " + constan.winners);
+        controlrun[0]=500;
+        controlrun[1]=450;
+        controlrun[2]=480;
+        for (int i = 0; i <speedhorse.length ; i++) {
+            speedhorse[i]=0;
+        }
+        bounds=70;
+        for (int i = 0; i < testhorseT.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT[i]);
+            tall[0]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT2.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT2[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+ testhorseT2[i]);
+            tall[1]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT3.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT3[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT3[i]);
+            tall[2]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT4.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT4[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT4[i]);
+            tall[3]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT5.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT5[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT5[i]);
+            tall[4]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT6.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT6[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT6[i]);
+            tall[5]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT7.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT7[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT7[i]);
+            tall[6]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT8.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT8[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT8[i]);
+            tall[7]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT9.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT9[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT9[i]);
+            tall[8]+=v/1000;
+        }
+
+        for (int i = 0; i < testhorseT10.length; i++) {
+            v=random.nextInt(bounds)+100;
+            testhorseT10[i]=v/1000;
+            Log.i("testhorseT", "runhorse02: "+testhorseT10[i]);
+            tall[9]+=v/1000;
+        }
+
+        Log.i("ssssss", "iiiiiiiiii"+tall[0]+"/"+tall[1]+"/"+tall[2]+"/"+tall[3]+"/"+tall[4]+"/"+tall[5]+"/"+tall[6]+"/"+tall[7]+"/"+tall[8]+"/"+tall[9]);
+
+
     }
 
     @Override
     public void update(float deltaTime) {
-//        if (test==true)
-        delauy += deltaTime * 0.01;
-//        if (constan.SCREEN_HEIGHT-linesie<=constan.SCREEN_HEIGHT/2)
-//            test=false;
-        finish(deltaTime);
-        if (delauy >= 5) {
-            posNow = random.nextInt(100);
-            delauy = 0;
+        if (speedhorse[0]<distance-70) {
+
+            delauy += deltaTime * 0.01;
+            if (delauy>2)
+//            runset(deltaTime);
+            runset2(deltaTime);
+            finish(deltaTime);
+            /////////////////////////////////////Floor
+            if (constan.SCREEN_HEIGHT - floorsie < -1150) {
+                floorsie = 0;
+            }
+            if (constan.SCREEN_HEIGHT - floorsiez < -1150) {
+                floorsiez = 0;
+            }
+            //////////////////////////////////////End Flor
+
         }
-        runset(deltaTime);
-        /////////////////////////////////////Floor
-        if (s1 - floorsie <= -1111) {
-            s1 = constan.SCREEN_HEIGHT;
-            floorsie = 0;
-        }
-        if (s2 - floorsiez <= -1111) {
-            s2 = constan.SCREEN_HEIGHT;
-            floorsiez = 0;
-        }
-        //////////////////////////////////////End Flor
         checkTouch();
+
     }
+
+
 
     @Override
     public void paint(float deltaTime) {
         FMXGraphics g = game.getGraphics();
         g.clearScreen(Color.BLACK);
-        g.drawImage(floor02, (int) (s1 - floorsie), constan.SCREEN_WIDTH - 187);
-        g.drawImage(floor02, (int) (s2 - floorsiez), constan.SCREEN_WIDTH - 187);
-//        if (cnn>=15)
-//        g.drawImage(finline, (int) (constan.SCREEN_HEIGHT-linesie),constan.SCREEN_WIDTH - 187);
-        g.drawImage(h01, (int) ((x + pilsuk01)-distime), y - 280, 138 * runframeH, 0, horsew, horseh);
-//        g.drawImage(h02, (int) (x + pilsuk02), y - 250, horsew * runframeH, 0, horsew, horseh);
-//        g.drawImage(h03, (int) (x + pilsuk03), y - 220, horsew * runframeH, 0, horsew, horseh);
+        g.drawImage(floor02, (int) (constan.SCREEN_HEIGHT - floorsie), constan.SCREEN_WIDTH - 187);
+        g.drawImage(floor02, (int) (constan.SCREEN_HEIGHT - floorsiez), constan.SCREEN_WIDTH - 187);
+        Log.i("sdfdsadf", "update: "+(distance-linesie));
 
+        g.drawImage(finline, (int) (distance - linesie), constan.SCREEN_WIDTH - 187);
+        for (int i = 0; i <horse.length ; i++) {
+//            g.drawImage(horse[1], (int) (speedhorse[1]- floornekoya)-80, y - 250, horsew * runframeH[1], 0, horsew, horseh);
+            g.drawImage(horse[i], (int) (speedhorse[i]- floornekoya)-80, constan.SCREEN_WIDTH - 104 - 18 * (9-i), 138 * runframeH[i], 0, 138, 104);
+
+        }
+//        g.drawImage(horse[0], (int) (speedhorse[0] -floornekoya)-80, y - 280, 138 * runframeH[0], 0, horsew, horseh);
+//        g.drawImage(horse[1], (int) (speedhorse[1]- floornekoya)-80, y - 250, horsew * runframeH[1], 0, horsew, horseh);
+//        g.drawImage(horse[2], (int) (speedhorse[2]- floornekoya)-80, y - 220, horsew * runframeH[2], 0, horsew, horseh);
     }
 
     public void runset(Float deltaTime) {
-        rrr += deltaTime * 0.01 * 20;
-        runframeH = (int) (rrr % 4);
-//        if (pilsuk01-cnn>=constan.SCREEN_HEIGHT/2)
-        floorsie += deltaTime * 0.01 * 550;
-        floorsiez += deltaTime * 0.01 * 550;
+        for (int i = 0; i <runframeH.length ; i++) {
+            rrr += deltaTime * 0.01 * controlrun[i]/100;
+            runframeH[i] = (int) (rrr % 4);
+        }
+        for (int i = 0; i <10 ; i++) {
+            speedhorse[i]+= deltaTime*0.01* controlrun[i];
+//            x[i]= (int) speedhorse[i];
+            if (speedhorse[i]-floornekoya>=constan.SCREEN_HEIGHT/2){
+                floorsie += deltaTime * 0.01 * controlrun[i];
+                floorsiez += deltaTime * 0.01 * controlrun[i];
+                floornekoya+=deltaTime*0.01* controlrun[i];
+                linesie+=deltaTime*0.01* controlrun[i];
+            }
+        }
+    }
 
-        pilsuk01 += deltaTime * 0.01 * 50;
-        distime+=deltaTime * 0.01 * 50;
-//        if (posNow >= 70) {
-//            pilsuk01 -= deltaTime * 0.01 * 50;
-//        }
-//        if (posNow < 70) {
-//            pilsuk01 += deltaTime * 0.01 * 50;
-//        }
-//
-//        if (posNow >= 50) {
-//            pilsuk02 -= deltaTime * 0.01 * 50;
-//        }
-//        if (posNow < 50) {
-//            pilsuk02 += deltaTime * 0.01 * 50;
-//        }
+    private void runset2(float deltaTime) {
+if (cnn<=9) {
 
-//        if (cnn>15)
-//            linesie += deltaTime * 0.01 * 550;
-//        if (floorsie > 1211 - constan.SCREEN_HEIGHT){
-//            floorsie = 0;
-//            cnn++;
-//            Log.i("y5rev", "update: "+cnn);
-//        }
-//
-//        if (ddda==1) {
-//            pilsuk01 += deltaTime * 0.01 * 100;
-//            if (pilsuk01>=constan.SCREEN_HEIGHT/2-horsew/2)
-//                ddda=0;
-//        }else if (ddda==0){
-//            pilsuk01 -= deltaTime * 0.01 * 50;
-//            if (pilsuk01<=horsew/2)
-//                ddda=1;
-//        }
-//
-//
-//        if (dddb==1) {
-//            pilsuk02 += deltaTime * 0.01 * 80;
-//            if (pilsuk02>=constan.SCREEN_HEIGHT/2-horsew/2)
-//                dddb=0;
-//        }else if (dddb==0){
-//            pilsuk02 -= deltaTime * 0.01 * 40;
-//            if (pilsuk02<=horsew/2)
-//                dddb=1;
-//        }
-//
-//
-//        if (dddc==1) {
-//            pilsuk03 += deltaTime * 0.01 * 60;
-//            if (pilsuk03>=constan.SCREEN_HEIGHT/2-horsew/2)
-//                dddc=0;
-//        }else if (dddc==0){
-//            pilsuk03 -= deltaTime * 0.01 * 30;
-//            if (pilsuk03<=horsew/2)
-//                dddc=1;
-//        }
+    speedhorse[0] += deltaTime * testhorseT[cnn] * 30;
+    speedhorse[1] += deltaTime * testhorseT2[cnn] * 30;
+    speedhorse[2] += deltaTime * testhorseT3[cnn] * 30;
+    speedhorse[3] += deltaTime * testhorseT4[cnn] * 30;
+    speedhorse[4] += deltaTime * testhorseT5[cnn] * 30;
+    speedhorse[5] += deltaTime * testhorseT6[cnn] * 30;
+    speedhorse[6] += deltaTime * testhorseT7[cnn] * 30;
+    speedhorse[7] += deltaTime * testhorseT8[cnn] * 30;
+    speedhorse[8] += deltaTime * testhorseT9[cnn] * 30;
+    speedhorse[9] += deltaTime * testhorseT10[cnn] * 30;
+    for (int i = 0; i <runframeH.length ; i++) {
+        rrr += deltaTime * 0.01 * controlrun[i]/100;
+        runframeH[i] = (int) (rrr % 4);
+    }
+    Log.i("sdfsa", "runset2: "+cnn);
+    for (int i = 0; i < 10; i++) {
+        if (speedhorse[i] - floornekoya >= constan.SCREEN_HEIGHT / 2) {
+            floorsie += deltaTime * testhorseT[cnn] * 30;
+            floorsiez += deltaTime * testhorseT[cnn] * 30;
+            floornekoya += deltaTime * testhorseT[cnn] * 30;
+            linesie += deltaTime * testhorseT[cnn] * 30;
+        }
+    }
+}
+else {
+    speedhorse[0] += deltaTime *testhorseT2[9] * 30;
+    speedhorse[1] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[2] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[3] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[4] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[5] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[6] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[7] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[8] += deltaTime * testhorseT2[9] * 30;
+    speedhorse[9] += deltaTime * testhorseT2[9] * 30;
+
+}
+        tsst+=deltaTime*0.01;
+        if (tsst>=4&&cnn<=9) {
+            cnn++;
+            tsst=0;
+        }
     }
 
     public void finish(Float deltaTime) {

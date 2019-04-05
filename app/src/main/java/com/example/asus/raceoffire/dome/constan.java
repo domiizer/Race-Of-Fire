@@ -10,16 +10,18 @@ import java.util.List;
 public class constan {
     public static int SCREEN_WIDTH = 482;
     public static int SCREEN_HEIGHT = 785;
-    public static FMXImage BG, starto,lal, horse, ibg,setbg, shpayout;
-    public static FMXImage[] test = new FMXImage[10];
+    public static FMXImage BG, starto,lal, horse, ibg,setbg, shpayout,shhowto;
+    public static FMXImage[] test = new FMXImage[10],stattest =new FMXImage[10];
     public static double[][] speed = new double[10][25];
-    public static FMXImage mainbg, betroom, chip25, chip100, chip500, chip1k, chip50, point, fxchip, crows, chip1, chip2, chip3, chip4, chip5, chip01, chip02, chip03, chip04, chip05;
+    public static FMXImage mainbg, betroom, chip25, chip100, chip500, chip1k, chip50, point, fxchip, chip1, chip2, chip3, chip4, chip5, chip01, chip02, chip03, chip04, chip05;
+    public static FMXImage stathead,statbody,statline,statposition,statenumber,statbtnX,result,setBot,arrow, exitAlert,exitBT;
+
     public static Bitmap fram;
-    public static int bet_amount = 0, credit = 10000, payout, count = 0, price1, price2, price3, price4, price5, selectbetroom, maxroom;
+    public static int bet_amount = 0, credit = 10000, payout, count = 0, price1, price2, price3, price4, price5, selectbetroom, maxroom,table;
     public static double runCamera = 0,eieiza;
     public static Integer[] checkshowhosre = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static ArrayList<Integer> chip_type = new ArrayList<>();
-    public static int[] bet_sub = new int[14];
+    public static int[] bet_sub = new int[14],countRound=new int[10];
     public static String user = "Domiizer";
     public static double[] rounds = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static int[] shows = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -43,7 +45,10 @@ public class constan {
     public static ArrayList<ShowChipz> arrShowChips14 = new ArrayList<>();
 
     public static List<Integer> winners = new ArrayList<>();
-    public static List<Integer> status = new ArrayList<>();
+//    public static List<Integer> status = new ArrayList<>();
+    public static ArrayList<ArrayList<Integer>> StatusHalf = new ArrayList<ArrayList<Integer>>();
+    public static ArrayList<ArrayList<Integer>> StatusFull = new ArrayList<ArrayList<Integer>>();
+
 //    public static List<Float> per = new ArrayList<>();
 
 }

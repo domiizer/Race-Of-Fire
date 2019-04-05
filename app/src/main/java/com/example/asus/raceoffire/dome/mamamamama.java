@@ -3,7 +3,7 @@ package com.example.asus.raceoffire.dome;
 import com.example.asus.raceoffire.framework.FMXGraphics;
 
 public class mamamamama {
-    private int x,y,srcX,srcY,width,height,num,lege = 18,runframeH;
+    public int x,y,srcX,srcY,width,height,num,lege = 18,runframeH;
     private double run;
 
     public mamamamama(int num){
@@ -28,4 +28,4 @@ this.num=num;
 
     }
 
-    }
+}
